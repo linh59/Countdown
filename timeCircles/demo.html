@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <script type="text/javascript" src="inc/TimeCircles.js"></script>
+        <link rel="stylesheet" href="inc/TimeCircles.css" />
+        <!-- http://git.wimbarelds.nl/TimeCircles/readme.php#StopWatch -->
+        <!-- https://www.jqueryscript.net/time-clock/jQuery-Plugin-To-Create-A-Countdown-Timer-In-Milliseconds-yuukCountdown-js.html -->
+        <style>
+            .group{
+                position: relative;
+               
+                
+            }
+            .countdown{
+                position: absolute;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                /* bring your own prefixes */
+                transform: translate(-50%, -50%);
+            }
+            .textDiv_Hours, .textDiv_Minutes{
+                display: none;
+
+            }
+            #CountDownTimerDays canvas{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div id="CountDownTimerDays"  data-timer="90000" style="width: 300px; height: auto;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="group">
+                        <div id="CountDownTimerSeconds" class="countdown" data-timer="90000" style="width: 600px; height: auto;"></div>
+                        <div id="CountDownTimerMinutes" class="countdown" data-timer="90000" style="width: 800px; height: auto;"></div>
+                        <div id="CountDownTimerHours"  class="countdown" data-timer="90000" style="width: 1000px; height: auto;"></div>
+            
+            
+                    </div> 
+                </div>
+            </div>
+            
+            
+        </div>
+        <script>
+            $("#CountDownTimerDays").TimeCircles(
+                { time: {  Hours: { show: false }, Seconds: {show: false}, Minutes: { show: false} }},
+
+                );
+            $("#CountDownTimerSeconds").TimeCircles(
+                { time: { Days: { show: false }, Hours: { show: false }, Minutes: { show: false} }, 
+                   bg_width: 0.05,
+                   fg_width: 0.020,
+                   
+                   //use_background: false,
+                   direction: "Clockwise"
+                }
+                
+            );
+            $("#CountDownTimerMinutes").TimeCircles({ time: { Days: { show: false }, Hours: { show: false }, Seconds: {show: false} },
+                    bg_width: 0.05,
+                   fg_width: 0.020,
+                  
+                   direction: "Clockwise"
+            });
+            $("#CountDownTimerHours").TimeCircles({ time: { Days: { show: false }, Minutes: { show: false}, Seconds: {show: false} },
+                    bg_width: 0.05,
+                   fg_width: 0.020,
+                 
+                   
+                   direction: "Clockwise"
+            });
+
+            // var updateTime = function(){
+            //     var date = $("#date").val();
+            //     var time = $("#time").val();
+            //     var datetime = date + ' ' + time + ':00';
+            //     $("#DateCountdown").data('date', datetime).TimeCircles().start();
+            // }
+         
+            
+            // Start and stop are methods applied on the public TimeCircles instance
+            $(".startTimer").click(function() {
+                $("#CountDownTimer").TimeCircles().start();
+            });
+            $(".stopTimer").click(function() {
+                $("#CountDownTimer").TimeCircles().stop();
+            });
+
+           
+
+        </script>       
+    </body>
+</html>
